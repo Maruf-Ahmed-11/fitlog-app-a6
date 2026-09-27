@@ -2,13 +2,13 @@ export interface Workout {
   id: string | number;
   name: string;
   description?: string;
-  category: string[];
+  muscleGroups: string[];
   equipment: string;
   difficulty?: string;
   sets?: number;
   reps?: string;
-  duration: number; // in minutes
-  calories: number; // in kcal
+  duration: number; 
+  caloriesBurned: number;   
   rating: number;
   instructions?: string[];
   image: string;

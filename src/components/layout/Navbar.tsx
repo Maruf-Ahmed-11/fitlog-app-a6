@@ -3,11 +3,13 @@
 import Link from "next/link";
 import Image from "next/image";
 import { usePathname } from "next/navigation";
-
-import logo from "@/assets/logo.png"; 
+import logo from "@/assets/logo.png";
+import { usePlan } from "@/store/PlanContext";
 
 export default function Navbar() {
   const pathname = usePathname();
+  // THIS LINE FIXES THE "NOT DEFINED" ERROR:
+  const { todayPlan, savedWorkouts } = usePlan(); 
 
   return (
     <nav className="flex items-center justify-between px-6 py-4 bg-[#0f1115] border-b border-[#1e2128]">
@@ -53,14 +55,14 @@ export default function Navbar() {
       <div className="flex items-center gap-4 text-sm font-medium">
         <Link href="/my-plan" className="flex items-center gap-2 text-white">
           Plan 
-          <span className="flex items-center justify-center w-6 h-6 bg-[#ccff00] text-black rounded-full text-xs font-bold">
-            0
+          <span className={`flex items-center justify-center w-6 h-6 rounded-full text-xs font-bold ${todayPlan.length > 0 ? "bg-[#ccff00] text-black" : "border border-gray-500 text-white"}`}>
+            {todayPlan.length}
           </span>
         </Link>
         <Link href="/my-plan" className="flex items-center gap-2 text-white">
           Saved 
-          <span className="flex items-center justify-center w-6 h-6 border border-gray-500 rounded-full text-xs font-bold">
-            0
+          <span className={`flex items-center justify-center w-6 h-6 rounded-full text-xs font-bold ${savedWorkouts.length > 0 ? "bg-[#ccff00] text-black" : "border border-gray-500 text-white"}`}>
+            {savedWorkouts.length}
           </span>
         </Link>
       </div>
