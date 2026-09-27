@@ -36,9 +36,6 @@ export default function HeroBanner() {
       <div className="flex-1 w-full flex justify-center md:justify-end z-10">
         <div className="relative w-64 h-64 md:w-96 md:h-96">
             <Image src={heroImage} alt="banner" />
-          <div className="w-full h-full bg-gray-700/30 rounded-2xl flex items-center justify-center text-gray-500 italic">
-            [Hero Image Placeholder]
-          </div>
         </div>
       </div>
       
