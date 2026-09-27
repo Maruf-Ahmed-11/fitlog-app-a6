@@ -1,11 +1,11 @@
-import React from 'react';
+import HeroBanner from "@/components/home/HeroBanner";
 
-const page = () => {
+export default function Home() {
   return (
-    <div>
-      Homepage
+    <div className="pb-24">
+      <HeroBanner />
+      
+      <div id="library"></div>
     </div>
   );
-};
-
-export default page;
+}
