@@ -1,5 +1,5 @@
 "use client";
-
+import Image from "next/image";
 import { useState } from "react";
 import Link from "next/link";
 import { usePlan } from "@/store/PlanContext";
@@ -53,13 +53,13 @@ export default function MyPlan() {
       {/* Tabs and Sort */}
       <div className="flex flex-col md:flex-row justify-between items-center mb-8 gap-4">
         <div className="flex bg-[#1e2128] p-1 rounded-xl w-full md:w-auto">
-          <button 
+          <button
             onClick={() => setActiveTab("plan")}
             className={`flex-1 md:flex-none px-6 py-2 rounded-lg text-sm font-bold transition-colors ${activeTab === "plan" ? "bg-gray-700 text-white" : "text-gray-400 hover:text-white"}`}
           >
             Today&apos;s Plan
           </button>
-          <button 
+          <button
             onClick={() => setActiveTab("saved")}
             className={`flex-1 md:flex-none px-6 py-2 rounded-lg text-sm font-bold transition-colors ${activeTab === "saved" ? "bg-gray-700 text-white" : "text-gray-400 hover:text-white"}`}
           >
@@ -69,7 +69,7 @@ export default function MyPlan() {
 
         <div className="flex items-center gap-3 w-full md:w-auto justify-end">
           <span className="text-gray-400 text-sm">Sort By</span>
-          <select 
+          <select
             value={sortBy}
             onChange={(e) => setSortBy(e.target.value as "Duration" | "Calories" | "Rating")}
             className="bg-[#1e2128] text-white text-sm border border-gray-700 rounded-lg px-4 py-2 outline-none focus:border-[#ccff00]"
@@ -94,15 +94,21 @@ export default function MyPlan() {
         ) : (
           sortedList.map((workout: Workout) => (
             <div key={workout.id} className="bg-[#1e2128] rounded-2xl p-4 flex flex-col md:flex-row items-center gap-6 group hover:border-[#ccff00]/30 border border-transparent transition-colors">
-              
-              <div className="w-full md:w-48 h-32 bg-gray-800 rounded-xl overflow-hidden flex-shrink-0">
-                <img src={workout.image || "https://via.placeholder.com/400"} alt={workout.name} className="w-full h-full object-cover" />
+
+              <div className="relative w-full md:w-48 h-32 bg-gray-800 rounded-xl overflow-hidden shrink-0">
+                <Image
+                  src={workout.image || "https://via.placeholder.com/400"}
+                  alt={workout.name}
+                  fill
+                  sizes="(max-width: 768px) 100vw, 192px"
+                  className="object-cover"
+                />
               </div>
-              
+
               <div className="flex-grow w-full">
                 <h3 className="font-oswald text-xl uppercase font-bold text-white mb-1">{workout.name}</h3>
                 <p className="text-gray-400 text-sm mb-4">{workout.equipment}</p>
-                
+
                 <div className="flex items-center gap-4 text-gray-400 text-xs font-medium">
                   <div className="flex items-center gap-1.5">
                     <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><circle cx="12" cy="12" r="10"></circle><polyline points="12 6 12 12 16 14"></polyline></svg>
@@ -123,17 +129,17 @@ export default function MyPlan() {
                 <Link href={`/workout/${workout.id}`} className="px-5 py-2 rounded-full border border-gray-600 text-white text-sm font-bold hover:bg-gray-800 transition-colors whitespace-nowrap">
                   View Details
                 </Link>
-                
+
                 {activeTab === "plan" && (
-                  <button 
+                  <button
                     onClick={() => markAsDone(workout.id)}
                     className="px-5 py-2 rounded-full bg-[#ccff00] text-black text-sm font-bold hover:bg-[#b3e600] transition-colors flex items-center gap-2 whitespace-nowrap"
                   >
                     ✓ Mark as Done
                   </button>
                 )}
-                
-                <button 
+
+                <button
                   onClick={() => activeTab === "plan" ? removeFromPlan(workout.id) : removeFromSaved(workout.id)}
                   className="p-2 text-gray-500 hover:text-red-500 transition-colors flex items-center justify-center w-10 h-10 rounded-full hover:bg-gray-800 shrink-0"
                 >

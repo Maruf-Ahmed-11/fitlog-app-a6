@@ -1,22 +1,25 @@
 import Link from "next/link";
+import Image from "next/image";
 import { Workout } from "@/types/index.types";
 
 export default function WorkoutCard({ workout }: { workout: Workout }) {
-  const safeCategories = Array.isArray(workout?.muscleGroups) 
-    ? workout.muscleGroups 
-    : typeof workout?.muscleGroups === "string" 
-      ? [workout.muscleGroups] 
+  const safeCategories = Array.isArray(workout?.muscleGroups)
+    ? workout.muscleGroups
+    : typeof workout?.muscleGroups === "string"
+      ? [workout.muscleGroups]
       : [];
 
   return (
     <Link href={`/workout/${workout?.id || "#"}`} className="block group">
       <div className="bg-[#1e2128] rounded-xl overflow-hidden transition-transform group-hover:scale-[1.02] border border-transparent group-hover:border-[#ccff00]/30 cursor-pointer flex flex-col h-full">
-        
-        <div className="relative w-full h-48 bg-gray-800">
-          <img 
-            src={workout?.image || "https://via.placeholder.com/400"} 
-            alt={workout?.name || "Workout"} 
-            className="w-full h-full object-cover"
+
+        <div className="relative w-full h-48 bg-gray-800 shrink-0">
+          <Image
+            src={workout.image || "https://via.placeholder.com/400"}
+            alt={workout.name}
+            fill
+            sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
+            className="object-cover"
           />
         </div>
 
