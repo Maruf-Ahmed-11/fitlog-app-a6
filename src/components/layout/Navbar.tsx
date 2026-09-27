@@ -4,7 +4,6 @@ import Link from "next/link";
 import Image from "next/image";
 import { usePathname } from "next/navigation";
 
-// Adjust this import path or extension based on exactly where your logo is inside src/assets
 import logo from "@/assets/logo.png"; 
 
 export default function Navbar() {
@@ -32,7 +31,7 @@ export default function Navbar() {
           href="/"
           className={`text-sm font-medium px-5 py-2 rounded-full transition-all ${
             pathname === "/" 
-              ? "bg-[#ccff00]/10 text-[#ccff00]" // 10% opacity accent background + accent text
+              ? "bg-[#ccff00]/10 text-[#ccff00]" 
               : "text-gray-400 hover:text-white"
           }`}
         >
