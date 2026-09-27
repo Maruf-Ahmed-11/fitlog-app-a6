@@ -1,10 +1,10 @@
+import Image from "next/image";
 import { notFound } from "next/navigation";
 import { Workout } from "@/types/index.types";
 import WorkoutActions from "@/components/ui/WorkoutAction";
 
 // Creating Promise
-export default async function WorkoutDetails({ params }: { params: Promise<{ id: string }> }) {
-
+const WorkoutDetails = async ({ params }: { params: Promise<{ id: string }> }) => {
   // Await the prams
   const resolvedParams = await params;
   const id = resolvedParams.id;
@@ -43,10 +43,13 @@ export default async function WorkoutDetails({ params }: { params: Promise<{ id:
 
         {/* Left: Huge Image */}
         <div className="w-full bg-gray-800 rounded-3xl overflow-hidden aspect-square lg:aspect-auto lg:h-[700px] relative">
-          <img
+          <Image
             src={workout.image || "https://via.placeholder.com/800"}
             alt={workout.name}
-            className="w-full h-full object-cover"
+            fill
+            priority
+            sizes="(max-width: 1024px) 100vw, 50vw"
+            className="object-cover"
           />
         </div>
 
@@ -101,14 +104,16 @@ export default async function WorkoutDetails({ params }: { params: Promise<{ id:
       </div>
     </div>
   );
-}
+};
 
 // Component to keep the Specs Table code clean
-function SpecRow({ label, value }: { label: string; value?: string }) {
+const SpecRow = ({ label, value }: { label: string; value?: string }) => {
   return (
     <div className="flex justify-between items-center py-2 border-b border-gray-700/50 last:border-0 text-sm">
       <span className="text-gray-500 uppercase font-medium">{label}</span>
       <span className="text-white font-medium text-right">{value || "-"}</span>
     </div>
   );
-}
+};
+
+export default WorkoutDetails;

@@ -5,7 +5,7 @@ import Link from "next/link";
 import { usePlan } from "@/store/PlanContext";
 import { Workout } from "@/types/index.types"; // Importing from dedicated types file
 
-export default function MyPlan() {
+const MyPlan = () => {
   const { todayPlan, savedWorkouts, removeFromPlan, removeFromSaved, markAsDone } = usePlan();
   const [activeTab, setActiveTab] = useState<"plan" | "saved">("plan");
   const [sortBy, setSortBy] = useState<"Duration" | "Calories" | "Rating">("Duration");
@@ -152,4 +152,6 @@ export default function MyPlan() {
       </div>
     </div>
   );
-}
+};
+
+export default MyPlan;
