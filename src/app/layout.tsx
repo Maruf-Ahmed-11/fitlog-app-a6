@@ -3,8 +3,9 @@ import { Inter, Oswald } from "next/font/google";
 import "./globals.css";
 import Navbar from "@/components/layout/Navbar";
 import Footer from "@/components/layout/Footer";
+import { ToastContainer } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 
-//importing Inter for body text, and Oswald for headings
 const inter = Inter({ subsets: ["latin"], variable: "--font-inter" });
 const oswald = Oswald({ subsets: ["latin"], variable: "--font-oswald" });
 
@@ -23,7 +24,20 @@ export default function RootLayout({
       <body className={`${inter.variable} ${oswald.variable} font-sans min-h-screen flex flex-col bg-[var(--background)] text-[var(--foreground)]`}>
         <Navbar />
         
-        {/* Main content expands to push footer to the bottom */}
+        {/* Placeing ToastContainer globally so it can be called from anywhere */}
+        <ToastContainer 
+          position="top-center" 
+          autoClose={3000} 
+          hideProgressBar={false}
+          newestOnTop={false}
+          closeOnClick
+          rtl={false}
+          pauseOnFocusLoss
+          draggable
+          pauseOnHover
+          theme="dark"
+        />
+
         <main className="flex-grow">
           {children}
         </main>
