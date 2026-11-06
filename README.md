@@ -4,7 +4,7 @@
 FitLog is a modern gym and workout companion web application designed for focused fitness training. It enables users to browse a library of exercises, view technical movement specifications, customize daily routines, and track their workout plans in real time.
 
 ## Live URI
-https://fitlog-app-a6-bice.vercel.app
+https://fitlog-app-a6-bice.vercel.app/
 
 ## Used Tech Stack
 - **Framework:** Next.js (App Router)
